@@ -19,25 +19,25 @@
 
 ## Установка
 1. Клонируйте репозиторий:
-  '''sh
+  ```sh
   git clone https://github.com/MaximPik/Sandbox.git
-  '''
+  ```
 2. Перейдите в директорию проекта:
-  '''sh
+  ```sh
   cd \Sandbox
-  '''
+  ```
 3. Создайте виртуальное окружение и активируйте его:
   - **Windows**:
-    '''sh
+    ```sh
     python -m venv env
     .\env\Scripts\activate
-    '''
+    ```
   - **macOS и Linux**:
-    '''sh
+    ```sh
     python3 -m venv env
     source env/bin/activate
-    '''
+    ```
 4. Установите зависимости:
-  '''sh
+  ```sh
   pip install -r requirements.txt
-  '''
+  ```
