@@ -31,7 +31,6 @@ def columnZ_creating(dataArr, formula, headings):
     formulaWithValue = formula
     parts = re.split(r'[+\-*/()]', currFormula) # разделять формулу на отдельные элементы
     # Поиск переменной и замена ее на значение из массива
-    #for iter in range(0, len(dataArr)-1):
     for row in dataArr:
         row[-1] = row[-1][:-1] #Удаляем "\n" в последнем элементе строки
         if len(row)>1:
@@ -80,18 +79,18 @@ def points_sort(axisXVector, axisYVector, pointsArr):
         cellIndexY = None
         for cell in range(0, len(axisXVector) - 1):
             if cellIndexX == None:
-                if float(point.X) >= axisXVector[cell] and float(point.X) < axisXVector[cell+1]:
+                if float(point.X) >= axisXVector[cell] and float(point.X) <= axisXVector[cell+1]:
                     cellIndexX = cell
+                    break
         for cell in range(0, len(axisYVector) - 1):
             if cellIndexY == None:
-                if float(point.Y) >= axisYVector[cell] and float(point.Y) < axisYVector[cell + 1]:
+                if float(point.Y) >= axisYVector[cell] and float(point.Y) <= axisYVector[cell + 1]:
                     cellIndexY = cell
-
+                    break
         if cellIndexX != None and cellIndexY != None:  # проверка выход за диапазон
             sortedPointsArr[cellIndexX][cellIndexY].append(point)
-
+    
     return sortedPointsArr
-
 
 # поиск узловых значений
 def node_points(axisXVector, axisYVector, sortedPointsArr, zMin, zMax):
@@ -135,6 +134,7 @@ def interpolate(sortedPointsArr, axisXVector, axisYVector, zMin, zMax):
     arrX = np.array(arrX)
     arrY = np.array(arrY)
     arrZ = np.array(arrZ)
+    
     axisXVector = np.array(axisXVector)
     axisYVector = np.array(axisYVector)
 

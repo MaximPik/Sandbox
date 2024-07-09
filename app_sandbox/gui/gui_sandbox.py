@@ -9,6 +9,7 @@ import vector.app_vector as app_vector
 import common.lib_common as lib_common
 import data_csv.lib_data_csv as lib_data_csv
 import config.config_creating as cfg
+import pyperclip
 
 ############################### Classes ######################################
 class CommonFunc:
@@ -88,10 +89,10 @@ class CommonFunc:
 
     def copy_to_clipboard(self, copyObj):
         if isinstance(copyObj, str):
-            lib_data_csv.pyperclip.copy(copyObj)
+            pyperclip.copy(copyObj)
         else:
             strBuf = lib_data_csv.generate_csv_buf(copyObj)  # записываем в csv файл
-            lib_data_csv.pyperclip.copy(strBuf)
+            pyperclip.copy(strBuf)
 
     def download_file(self, downloadObj):
         strBuf = lib_data_csv.generate_csv_file(downloadObj)  # записываем в csv файл

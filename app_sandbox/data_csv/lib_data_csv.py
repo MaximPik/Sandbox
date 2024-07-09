@@ -74,17 +74,20 @@ def process_csv_file(file):
 def generate_csv_buf(csvRecordList):
     arrBuf = []
     strBuf = ""
-    #Получаю массив вида ["A","B","C\n",...]
-    for iter in range(0, len(csvRecordList)):
-        strArr = csvRecordList[iter].split(";")
-        for jter in range(0, len(strArr)):
-            arrBuf.append(strArr[jter])
+
+    for csvRecord in csvRecordList:
+        strArr = csvRecord.split(";")
+        arrBuf.extend(strArr)
+    
     for csvRecord in arrBuf:
-        if (csvRecord != None):
-            if csvRecord[-1] != '\n':
-                strBuf += str(csvRecord)+'\t'
+        if csvRecord is not None:
+            if csvRecord.endswith('\n'):
+                strBuf += csvRecord
             else:
-                strBuf += str(csvRecord)
-    #Обрезаем строку, исключая 2 последних символа (\n)
-    strBuf = strBuf[:-2]
+                strBuf += csvRecord + '\t'
+
+    #Обрезаем строку
+    if strBuf.endswith('\t') or strBuf.endswith('\n'):
+        strBuf = strBuf[:-1]
+
     return strBuf
